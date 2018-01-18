@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  * @author lngtr
  * @since 8/13/2017
  */
+@Deprecated
 @Controller
 @RequestMapping("/bptf/legacy")
 public class LegacyBptfWebController {

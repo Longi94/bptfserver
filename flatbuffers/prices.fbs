@@ -1,0 +1,22 @@
+namespace in.dragonbra.bptfserver.flatbuffers;
+
+table Price {
+  defindex:int;
+  quality:short;
+  tradable:bool;
+  craftabl:bool;
+  priceIndex:int;
+  australium:bool;
+  price:double;
+  priceMax:double = 0;
+  currency:string;
+  updateTs:long;
+  difference:double;
+  weaponWear:int;
+}
+
+table Prices {
+  prices:[Price];
+}
+
+root_type Prices;

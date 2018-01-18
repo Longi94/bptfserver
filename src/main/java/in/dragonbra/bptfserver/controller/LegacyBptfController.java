@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
  * @author lngtr
  * @since 7/24/2017
  */
+@Deprecated
 @RestController
 @RequestMapping("/bptf/legacy")
 public class LegacyBptfController {
