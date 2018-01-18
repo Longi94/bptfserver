@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <title></title>
+
+    <script src="/webjars/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/jquery.redirect.js"></script>
+
+    <script>
+        // <![CDATA[
+        $(function () {
+            var searchParams = {
+                attributes: {
+                    has1: {}
+                }
+            };
+
+            var defindex = getUrlParameter('defindex');
+            var quality = getUrlParameter('quality');
+            var uncraftable = getUrlParameter('uncraftable');
+            var australium = getUrlParameter('australium');
+            var effect = getUrlParameter('effect');
+            var crateNumber = getUrlParameter('crate');
+
+            searchParams.has1 = '440,' + defindex + ',' + quality;
+            searchParams.attributes.has1.uncraftable = uncraftable;
+
+            if (australium) {
+                searchParams.attributes.has1['2027'] = australium;
+            }
+
+            if (effect) {
+                searchParams.attributes.has1['134'] = effect;
+            }
+
+            if (crateNumber) {
+                searchParams.attributes.has1['187'] = crateNumber;
+            }
+
+            var data = {
+                json: JSON.stringify(searchParams),
+                submit: ""
+            };
+
+            $.redirect('http://www.tf2outpost.com/search', data, 'POST');
+        });
+
+        var getUrlParameter = function getUrlParameter(sParam) {
+            var sPageURL = decodeURIComponent(window.location.search.substring(1)),
+                sURLVariables = sPageURL.split('&'),
+                sParameterName,
+                i;
+
+            for (i = 0; i < sURLVariables.length; i++) {
+                sParameterName = sURLVariables[i].split('=');
+
+                if (sParameterName[0] === sParam) {
+                    return sParameterName[1] === undefined ? true : sParameterName[1];
+                }
+            }
+        };
+        // ]]>
+    </script>
+
+</head>
+<body>
+</body>
+</html>
