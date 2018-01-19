@@ -4,14 +4,15 @@ table Price {
   defindex:int;
   quality:short;
   tradable:bool;
-  craftabl:bool;
+  craftable:bool;
   priceIndex:int;
   australium:bool;
-  price:double;
-  priceMax:double = 0;
+  price:float;
+  priceMax:float;
+  raw:float;
   currency:string;
   updateTs:long;
-  difference:double;
+  difference:float;
   weaponWear:int;
 }
 

@@ -59,21 +59,27 @@ public class BptfFlatBuffersController {
                     entity.getCraftable(),
                     entity.getPriceIndex(),
                     entity.getAustralium(),
-                    entity.getPrice(),
-                    entity.getPriceMax() == null ? 0 : entity.getPriceMax(),
+                    entity.getPrice().floatValue(),
+                    entity.getPriceMax() == null ? 0 : entity.getPriceMax().floatValue(),
+                    entity.getPriceRaw().floatValue(),
                     currencies.get(entity.getCurrency()),
                     entity.getUpdateTs(),
-                    entity.getDifference(),
+                    entity.getDifference().floatValue(),
                     entity.getWeaponWear()
             );
         }
 
         int prices = Prices.createPricesVector(builder, priceOffsets);
 
-        builder.finish(prices);
+        Prices.startPrices(builder);
+        Prices.addPrices(builder, prices);
+        int pricesBuf = Prices.endPrices(builder);
+
+        builder.finish(pricesBuf);
 
         ByteBuffer buffer = builder.dataBuffer();
 
+        response.setHeader("Content-Type", "application/octet-stream");
         Channels.newChannel(response.getOutputStream()).write(buffer);
     }
 }

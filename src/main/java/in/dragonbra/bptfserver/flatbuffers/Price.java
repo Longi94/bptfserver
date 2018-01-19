@@ -18,59 +18,63 @@ public final class Price extends Table {
   public int defindex() { int o = __offset(4); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
   public short quality() { int o = __offset(6); return o != 0 ? bb.getShort(o + bb_pos) : 0; }
   public boolean tradable() { int o = __offset(8); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
-  public boolean craftabl() { int o = __offset(10); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public boolean craftable() { int o = __offset(10); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
   public int priceIndex() { int o = __offset(12); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
   public boolean australium() { int o = __offset(14); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
-  public double price() { int o = __offset(16); return o != 0 ? bb.getDouble(o + bb_pos) : 0.0; }
-  public double priceMax() { int o = __offset(18); return o != 0 ? bb.getDouble(o + bb_pos) : 0.0; }
-  public String currency() { int o = __offset(20); return o != 0 ? __string(o + bb_pos) : null; }
-  public ByteBuffer currencyAsByteBuffer() { return __vector_as_bytebuffer(20, 1); }
-  public long updateTs() { int o = __offset(22); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
-  public double difference() { int o = __offset(24); return o != 0 ? bb.getDouble(o + bb_pos) : 0.0; }
-  public int weaponWear() { int o = __offset(26); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
+  public float price() { int o = __offset(16); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
+  public float priceMax() { int o = __offset(18); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
+  public float raw() { int o = __offset(20); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
+  public String currency() { int o = __offset(22); return o != 0 ? __string(o + bb_pos) : null; }
+  public ByteBuffer currencyAsByteBuffer() { return __vector_as_bytebuffer(22, 1); }
+  public long updateTs() { int o = __offset(24); return o != 0 ? bb.getLong(o + bb_pos) : 0L; }
+  public float difference() { int o = __offset(26); return o != 0 ? bb.getFloat(o + bb_pos) : 0.0f; }
+  public int weaponWear() { int o = __offset(28); return o != 0 ? bb.getInt(o + bb_pos) : 0; }
 
   public static int createPrice(FlatBufferBuilder builder,
       int defindex,
       short quality,
       boolean tradable,
-      boolean craftabl,
+      boolean craftable,
       int priceIndex,
       boolean australium,
-      double price,
-      double priceMax,
+      float price,
+      float priceMax,
+      float raw,
       int currencyOffset,
       long updateTs,
-      double difference,
+      float difference,
       int weaponWear) {
-    builder.startObject(12);
-    Price.addDifference(builder, difference);
+    builder.startObject(13);
     Price.addUpdateTs(builder, updateTs);
+    Price.addWeaponWear(builder, weaponWear);
+    Price.addDifference(builder, difference);
+    Price.addCurrency(builder, currencyOffset);
+    Price.addRaw(builder, raw);
     Price.addPriceMax(builder, priceMax);
     Price.addPrice(builder, price);
-    Price.addWeaponWear(builder, weaponWear);
-    Price.addCurrency(builder, currencyOffset);
     Price.addPriceIndex(builder, priceIndex);
     Price.addDefindex(builder, defindex);
     Price.addQuality(builder, quality);
     Price.addAustralium(builder, australium);
-    Price.addCraftabl(builder, craftabl);
+    Price.addCraftable(builder, craftable);
     Price.addTradable(builder, tradable);
     return Price.endPrice(builder);
   }
 
-  public static void startPrice(FlatBufferBuilder builder) { builder.startObject(12); }
+  public static void startPrice(FlatBufferBuilder builder) { builder.startObject(13); }
   public static void addDefindex(FlatBufferBuilder builder, int defindex) { builder.addInt(0, defindex, 0); }
   public static void addQuality(FlatBufferBuilder builder, short quality) { builder.addShort(1, quality, 0); }
   public static void addTradable(FlatBufferBuilder builder, boolean tradable) { builder.addBoolean(2, tradable, false); }
-  public static void addCraftabl(FlatBufferBuilder builder, boolean craftabl) { builder.addBoolean(3, craftabl, false); }
+  public static void addCraftable(FlatBufferBuilder builder, boolean craftable) { builder.addBoolean(3, craftable, false); }
   public static void addPriceIndex(FlatBufferBuilder builder, int priceIndex) { builder.addInt(4, priceIndex, 0); }
   public static void addAustralium(FlatBufferBuilder builder, boolean australium) { builder.addBoolean(5, australium, false); }
-  public static void addPrice(FlatBufferBuilder builder, double price) { builder.addDouble(6, price, 0.0); }
-  public static void addPriceMax(FlatBufferBuilder builder, double priceMax) { builder.addDouble(7, priceMax, 0.0); }
-  public static void addCurrency(FlatBufferBuilder builder, int currencyOffset) { builder.addOffset(8, currencyOffset, 0); }
-  public static void addUpdateTs(FlatBufferBuilder builder, long updateTs) { builder.addLong(9, updateTs, 0L); }
-  public static void addDifference(FlatBufferBuilder builder, double difference) { builder.addDouble(10, difference, 0.0); }
-  public static void addWeaponWear(FlatBufferBuilder builder, int weaponWear) { builder.addInt(11, weaponWear, 0); }
+  public static void addPrice(FlatBufferBuilder builder, float price) { builder.addFloat(6, price, 0.0f); }
+  public static void addPriceMax(FlatBufferBuilder builder, float priceMax) { builder.addFloat(7, priceMax, 0.0f); }
+  public static void addRaw(FlatBufferBuilder builder, float raw) { builder.addFloat(8, raw, 0.0f); }
+  public static void addCurrency(FlatBufferBuilder builder, int currencyOffset) { builder.addOffset(9, currencyOffset, 0); }
+  public static void addUpdateTs(FlatBufferBuilder builder, long updateTs) { builder.addLong(10, updateTs, 0L); }
+  public static void addDifference(FlatBufferBuilder builder, float difference) { builder.addFloat(11, difference, 0.0f); }
+  public static void addWeaponWear(FlatBufferBuilder builder, int weaponWear) { builder.addInt(12, weaponWear, 0); }
   public static int endPrice(FlatBufferBuilder builder) {
     int o = builder.endObject();
     return o;
