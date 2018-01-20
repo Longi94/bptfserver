@@ -6,6 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * @author lngtr
  * @since 8/13/2017
  */
+@Deprecated
 public class ItemSchemaItemResponse {
 
     @JsonProperty("defindex")

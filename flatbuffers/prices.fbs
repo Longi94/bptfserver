@@ -1,4 +1,4 @@
-namespace in.dragonbra.bptfserver.flatbuffers;
+namespace in.dragonbra.bptfserver.flatbuffers.prices;
 
 table Price {
   defindex:int;

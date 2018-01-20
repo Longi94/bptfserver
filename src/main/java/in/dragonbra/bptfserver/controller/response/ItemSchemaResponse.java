@@ -13,6 +13,7 @@ import java.util.List;
  * @author lngtr
  * @since 8/13/2017
  */
+@Deprecated
 public class ItemSchemaResponse {
 
     @JsonProperty("success")
