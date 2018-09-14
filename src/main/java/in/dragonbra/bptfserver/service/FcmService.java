@@ -20,8 +20,12 @@ public class FcmService {
 
     private static final Logger logger = Logger.getLogger(FcmService.class);
 
+    private final FcmInterface fcmInterface;
+
     @Autowired
-    private FcmInterface fcmInterface;
+    public FcmService(FcmInterface fcmInterface) {
+        this.fcmInterface = fcmInterface;
+    }
 
     public FcmResponse sendTopicNotification(String topic) throws IOException {
         return sendTopicNotification(topic, "");

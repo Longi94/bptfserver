@@ -22,7 +22,12 @@ public class Tf2WebApiService {
 
     private static final Logger logger = LogManager.getLogger(BackpackTfApiService.class);
 
-    @Autowired private Tf2WebApiInterface tf2WebApiInterface;
+    private final Tf2WebApiInterface tf2WebApiInterface;
+
+    @Autowired
+    public Tf2WebApiService(Tf2WebApiInterface tf2WebApiInterface) {
+        this.tf2WebApiInterface = tf2WebApiInterface;
+    }
 
     public ItemSchemaBody getTf2ItemSchema() throws IOException {
         Call<ItemSchemaBody> call = tf2WebApiInterface.getTf2ItemSchema(LANGUAGE);

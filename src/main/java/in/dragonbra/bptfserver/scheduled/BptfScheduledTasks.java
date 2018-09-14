@@ -1,6 +1,5 @@
 package in.dragonbra.bptfserver.scheduled;
 
-import in.dragonbra.bptfserver.repository.ItemSchemaRepository;
 import in.dragonbra.bptfserver.retrofit.response.backpacktf.getprices.GetPricesBody;
 import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.ItemSchemaBody;
 import in.dragonbra.bptfserver.service.BackpackTfApiService;
@@ -25,17 +24,20 @@ public class BptfScheduledTasks {
 
     private static final Logger logger = LogManager.getLogger(BptfScheduledTasks.class);
 
-    @Autowired
-    private BackpackTfApiService backpackTfApiService;
+    private final BackpackTfApiService backpackTfApiService;
+
+    private final Tf2WebApiService tf2WebApiService;
+
+    private final BptfService bptfService;
 
     @Autowired
-    private Tf2WebApiService tf2WebApiService;
-
-    @Autowired
-    private BptfService bptfService;
-
-    @Autowired
-    private ItemSchemaRepository itemSchemaRepository;
+    public BptfScheduledTasks(BackpackTfApiService backpackTfApiService,
+                              Tf2WebApiService tf2WebApiService,
+                              BptfService bptfService) {
+        this.backpackTfApiService = backpackTfApiService;
+        this.tf2WebApiService = tf2WebApiService;
+        this.bptfService = bptfService;
+    }
 
     @Scheduled(cron = "${cron.bptf.prices}")
     public void downloadPrices() throws IOException {

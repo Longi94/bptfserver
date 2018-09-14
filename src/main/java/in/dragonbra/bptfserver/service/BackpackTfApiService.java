@@ -20,7 +20,12 @@ public class BackpackTfApiService {
 
     private static final Logger logger = LogManager.getLogger(BackpackTfApiService.class);
 
-    @Autowired private BackpackTfInterface backpackTfInterface;
+    private final BackpackTfInterface backpackTfInterface;
+
+    @Autowired
+    public BackpackTfApiService(BackpackTfInterface backpackTfInterface) {
+        this.backpackTfInterface = backpackTfInterface;
+    }
 
     public GetPricesBody getPrices() throws IOException {
         Call<GetPricesBody> call = backpackTfInterface.getPrices();

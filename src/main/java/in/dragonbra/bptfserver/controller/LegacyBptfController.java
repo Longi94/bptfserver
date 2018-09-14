@@ -27,16 +27,28 @@ public class LegacyBptfController {
 
     private static final Logger logger = LogManager.getLogger(LegacyBptfController.class);
 
+    private final ItemPriceRepository itemPriceRepository;
+
+    private final ItemSchemaRepository itemSchemaRepository;
+
+    private final DecoratedWeaponRepository decoratedWeaponRepository;
+
+    private final OriginNameRepository originNameRepository;
+
+    private final ParticleSchemaRepository particleSchemaRepository;
+
     @Autowired
-    private ItemPriceRepository itemPriceRepository;
-
-    @Autowired private ItemSchemaRepository itemSchemaRepository;
-
-    @Autowired private DecoratedWeaponRepository decoratedWeaponRepository;
-
-    @Autowired private OriginNameRepository originNameRepository;
-
-    @Autowired private ParticleSchemaRepository particleSchemaRepository;
+    public LegacyBptfController(ItemPriceRepository itemPriceRepository,
+                                ItemSchemaRepository itemSchemaRepository,
+                                DecoratedWeaponRepository decoratedWeaponRepository,
+                                OriginNameRepository originNameRepository,
+                                ParticleSchemaRepository particleSchemaRepository) {
+        this.itemPriceRepository = itemPriceRepository;
+        this.itemSchemaRepository = itemSchemaRepository;
+        this.decoratedWeaponRepository = decoratedWeaponRepository;
+        this.originNameRepository = originNameRepository;
+        this.particleSchemaRepository = particleSchemaRepository;
+    }
 
     @RequestMapping(value = "/prices", method = RequestMethod.GET)
     public PricesResponse prices(@RequestParam(name = "since", defaultValue = "0") long since) {

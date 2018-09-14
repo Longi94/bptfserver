@@ -31,14 +31,18 @@ public class BptfService {
 
     private static final Logger logger = LogManager.getLogger(BptfService.class);
 
-    @Autowired
-    private ItemPriceRepository itemPriceRepository;
+    private final ItemPriceRepository itemPriceRepository;
+
+    private final EntityManager entityManager;
+
+    private final FcmService fcmService;
 
     @Autowired
-    private EntityManager entityManager;
-
-    @Autowired
-    private FcmService fcmService;
+    public BptfService(ItemPriceRepository itemPriceRepository, EntityManager entityManager, FcmService fcmService) {
+        this.itemPriceRepository = itemPriceRepository;
+        this.entityManager = entityManager;
+        this.fcmService = fcmService;
+    }
 
     @Transactional
     public void processGetPricesBody(GetPricesBody body) {
