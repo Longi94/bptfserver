@@ -2,10 +2,11 @@
 
 package in.dragonbra.bptfserver.flatbuffers.itemschema;
 
-import java.nio.*;
-import java.lang.*;
-import java.util.*;
-import com.google.flatbuffers.*;
+import com.google.flatbuffers.FlatBufferBuilder;
+import com.google.flatbuffers.Table;
+
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 @SuppressWarnings("unused")
 public final class Item extends Table {
@@ -22,14 +23,18 @@ public final class Item extends Table {
   public String type() { int o = __offset(10); return o != 0 ? __string(o + bb_pos) : null; }
   public ByteBuffer typeAsByteBuffer() { return __vector_as_bytebuffer(10, 1); }
   public boolean proper() { int o = __offset(12); return o != 0 ? 0!=bb.get(o + bb_pos) : false; }
+  public String imageLarge() { int o = __offset(14); return o != 0 ? __string(o + bb_pos) : null; }
+  public ByteBuffer imageLargeAsByteBuffer() { return __vector_as_bytebuffer(14, 1); }
 
   public static int createItem(FlatBufferBuilder builder,
       int defindex,
       int nameOffset,
       int descriptionOffset,
       int typeOffset,
-      boolean proper) {
-    builder.startObject(5);
+      boolean proper,
+      int imageLargeOffset) {
+    builder.startObject(6);
+    Item.addImageLarge(builder, imageLargeOffset);
     Item.addType(builder, typeOffset);
     Item.addDescription(builder, descriptionOffset);
     Item.addName(builder, nameOffset);
@@ -38,12 +43,13 @@ public final class Item extends Table {
     return Item.endItem(builder);
   }
 
-  public static void startItem(FlatBufferBuilder builder) { builder.startObject(5); }
+  public static void startItem(FlatBufferBuilder builder) { builder.startObject(6); }
   public static void addDefindex(FlatBufferBuilder builder, int defindex) { builder.addInt(0, defindex, 0); }
   public static void addName(FlatBufferBuilder builder, int nameOffset) { builder.addOffset(1, nameOffset, 0); }
   public static void addDescription(FlatBufferBuilder builder, int descriptionOffset) { builder.addOffset(2, descriptionOffset, 0); }
   public static void addType(FlatBufferBuilder builder, int typeOffset) { builder.addOffset(3, typeOffset, 0); }
   public static void addProper(FlatBufferBuilder builder, boolean proper) { builder.addBoolean(4, proper, false); }
+  public static void addImageLarge(FlatBufferBuilder builder, int imageLargeOffset) { builder.addOffset(5, imageLargeOffset, 0); }
   public static int endItem(FlatBufferBuilder builder) {
     int o = builder.endObject();
     return o;
