@@ -137,11 +137,17 @@ public class BptfFlatBuffersController {
             Item.addName(builder, nameOffset);
             Item.addProper(builder, schema.getProperName());
             Item.addType(builder, typeOffset);
-            Item.addImage(builder, imageOffset);
-            Item.addImageLarge(builder, imageLargeOffset);
 
             if (descriptionOffset != -1) {
                 Item.addDescription(builder, descriptionOffset);
+            }
+
+            if (imageOffset != -1) {
+                Item.addImage(builder, imageOffset);
+            }
+
+            if (imageLargeOffset != -1) {
+                Item.addImageLarge(builder, imageLargeOffset);
             }
 
             itemOffsets[i] = Item.endItem(builder);
