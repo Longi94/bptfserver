@@ -122,6 +122,11 @@ public class BptfFlatBuffersController {
                 descriptionOffset = builder.createString(schema.getItemDescription());
             }
 
+            int imageOffset = -1;
+            if (schema.getImageUrl() != null) {
+                imageOffset = builder.createString(schema.getImageUrl());
+            }
+
             int imageLargeOffset = -1;
             if (schema.getImageUrlLarge() != null) {
                 imageLargeOffset = builder.createString(schema.getImageUrlLarge());
@@ -132,6 +137,7 @@ public class BptfFlatBuffersController {
             Item.addName(builder, nameOffset);
             Item.addProper(builder, schema.getProperName());
             Item.addType(builder, typeOffset);
+            Item.addImage(builder, imageOffset);
             Item.addImageLarge(builder, imageLargeOffset);
 
             if (descriptionOffset != -1) {
