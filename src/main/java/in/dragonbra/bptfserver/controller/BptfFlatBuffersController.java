@@ -107,7 +107,7 @@ public class BptfFlatBuffersController {
     public void itemSchema(HttpServletResponse response) throws IOException {
         FlatBufferBuilder builder = new FlatBufferBuilder();
 
-        List<ItemSchema> itemSchemaList = itemSchemaRepository.findAllIncludeNameOverrides();
+        List<ItemSchema> itemSchemaList = itemSchemaRepository.findAllIncludeOverrides();
 
         int[] itemOffsets = new int[itemSchemaList.size()];
 

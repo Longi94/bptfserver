@@ -21,12 +21,19 @@ public interface ItemSchemaRepository extends CrudRepository<ItemSchema, Long> {
             "  item_schema.ITEM_DESCRIPTION, " +
             "  item_schema.TYPE_NAME, " +
             "  item_schema.PROPER_NAME, " +
-            "  item_schema.IMAGE_URL, " +
-            "  item_schema.IMAGE_URL_LARGE " +
+            "  CASE WHEN (image_override.IMAGE_URL IS NULL) " +
+            "    THEN item_schema.IMAGE_URL " +
+            "  ELSE image_override.IMAGE_URL " +
+            "  END AS `IMAGE_URL`, " +
+            "  CASE WHEN (image_override.IMAGE_URL_LARGE IS NULL) " +
+            "    THEN item_schema.IMAGE_URL_LARGE " +
+            "  ELSE image_override.IMAGE_URL_LARGE " +
+            "  END AS `IMAGE_URL_LARGE` " +
             "FROM item_schema " +
             "  LEFT JOIN name_override ON item_schema.DEFINDEX = name_override.DEFINDEX " +
+            "  LEFT JOIN image_override ON item_schema.DEFINDEX = image_override.DEFINDEX " +
             "ORDER BY item_schema.DEFINDEX ASC", nativeQuery = true)
-    List<ItemSchema> findAllIncludeNameOverrides();
+    List<ItemSchema> findAllIncludeOverrides();
 
     ItemSchema findFirstByDefindex(int defindex);
 }

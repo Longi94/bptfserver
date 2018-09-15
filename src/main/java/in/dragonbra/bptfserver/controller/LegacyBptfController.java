@@ -82,7 +82,7 @@ public class LegacyBptfController {
     public ItemSchemaResponse itemSchema() {
         ItemSchemaResponse response = new ItemSchemaResponse();
 
-        response.setItems(itemSchemaRepository.findAllIncludeNameOverrides().stream().map(entity -> {
+        response.setItems(itemSchemaRepository.findAllIncludeOverrides().stream().map(entity -> {
             ItemSchemaItemResponse item = new ItemSchemaItemResponse();
 
             item.setDefindex(entity.getDefindex());
