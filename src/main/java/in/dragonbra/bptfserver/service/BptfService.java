@@ -155,14 +155,20 @@ public class BptfService {
     }
 
     @Transactional
-    public void processItemSchemaBody(ItemSchemaBody body) {
+    public void processItemSchemaBody(SchemaOverviewBody body, SchemaItemsBody itemsBody) {
 
         if (body == null) {
             // TODO: 7/23/2017
             throw new IllegalArgumentException("body is null");
         }
 
-        ItemSchemaResult result = body.getResult();
+        if (itemsBody == null) {
+            // TODO: 7/23/2017
+            throw new IllegalArgumentException("itemsBody is null");
+        }
+
+        SchemaOverviewResult result = body.getResult();
+        SchemaItemsResult itemResult = itemsBody.getResult();
 
         if (result == null) {
             // TODO: 7/23/2017
@@ -171,7 +177,7 @@ public class BptfService {
 
         int count = 0;
 
-        for (ItemSchemaItem item : result.getItems()) {
+        for (ItemSchemaItem item : itemResult.getItems()) {
             ItemSchema itemSchema = new ItemSchema();
 
             itemSchema.setDefindex(item.getDefindex());

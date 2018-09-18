@@ -1,7 +1,8 @@
 package in.dragonbra.bptfserver.scheduled;
 
 import in.dragonbra.bptfserver.retrofit.response.backpacktf.getprices.GetPricesBody;
-import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.ItemSchemaBody;
+import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.SchemaItemsBody;
+import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.SchemaOverviewBody;
 import in.dragonbra.bptfserver.service.BackpackTfApiService;
 import in.dragonbra.bptfserver.service.BptfService;
 import in.dragonbra.bptfserver.service.Tf2WebApiService;
@@ -52,8 +53,9 @@ public class BptfScheduledTasks {
     public void downloadItemSchema() throws IOException {
         logger.info("Downloading itemschema...");
 
-        ItemSchemaBody body = tf2WebApiService.getTf2ItemSchema();
+        SchemaOverviewBody overviewBody = tf2WebApiService.getTf2SchemaOverview();
+        SchemaItemsBody itemsBody = tf2WebApiService.getTf2SchemaItems();
 
-        bptfService.processItemSchemaBody(body);
+        bptfService.processItemSchemaBody(overviewBody, itemsBody);
     }
 }

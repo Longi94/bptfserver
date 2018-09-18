@@ -4,18 +4,18 @@ import com.google.gson.annotations.SerializedName;
 
 /**
  * @author lngtr
- * @since 8/13/2017
+ * @since 2018-09-17
  */
-public class ItemSchemaBody {
+public class SchemaItemsBody {
 
     @SerializedName("result")
-    private ItemSchemaResult result;
+    private SchemaItemsResult result;
 
-    public ItemSchemaResult getResult() {
+    public SchemaItemsResult getResult() {
         return result;
     }
 
-    public void setResult(ItemSchemaResult result) {
+    public void setResult(SchemaItemsResult result) {
         this.result = result;
     }
 }

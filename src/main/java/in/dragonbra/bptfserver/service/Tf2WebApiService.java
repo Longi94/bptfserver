@@ -1,7 +1,8 @@
 package in.dragonbra.bptfserver.service;
 
 import in.dragonbra.bptfserver.retrofit.Tf2WebApiInterface;
-import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.ItemSchemaBody;
+import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.SchemaItemsBody;
+import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.SchemaOverviewBody;
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,10 +30,20 @@ public class Tf2WebApiService {
         this.tf2WebApiInterface = tf2WebApiInterface;
     }
 
-    public ItemSchemaBody getTf2ItemSchema() throws IOException {
-        Call<ItemSchemaBody> call = tf2WebApiInterface.getTf2ItemSchema(LANGUAGE);
+    public SchemaOverviewBody getTf2SchemaOverview() throws IOException {
+        Call<SchemaOverviewBody> call = tf2WebApiInterface.getTf2SchemaOverview(LANGUAGE);
 
-        Response<ItemSchemaBody> response = call.execute();
+        Response<SchemaOverviewBody> response = call.execute();
+
+        logger.info("response code: " + response.code() + ", response message: " + response.message());
+
+        return response.body();
+    }
+
+    public SchemaItemsBody getTf2SchemaItems() throws IOException {
+        Call<SchemaItemsBody> call = tf2WebApiInterface.getTf2SchemaItems(LANGUAGE);
+
+        Response<SchemaItemsBody> response = call.execute();
 
         logger.info("response code: " + response.code() + ", response message: " + response.message());
 
