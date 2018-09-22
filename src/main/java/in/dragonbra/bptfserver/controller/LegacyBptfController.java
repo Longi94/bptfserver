@@ -6,8 +6,8 @@ import in.dragonbra.bptfserver.controller.response.ItemSchemaResponse;
 import in.dragonbra.bptfserver.controller.response.PricesResponse;
 import in.dragonbra.bptfserver.repository.*;
 import in.dragonbra.bptfserver.util.CollectionUtils;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 @RequestMapping("/bptf/legacy")
 public class LegacyBptfController {
 
-    private static final Logger logger = LogManager.getLogger(LegacyBptfController.class);
+    private static final Logger logger = LoggerFactory.getLogger(LegacyBptfController.class);
 
     private final ItemPriceRepository itemPriceRepository;
 

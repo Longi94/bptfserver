@@ -1,7 +1,8 @@
 package in.dragonbra.bptfserver.controller;
 
 import in.dragonbra.bptfserver.openid.SteamOpenID;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,7 +18,7 @@ import java.net.URI;
 @RequestMapping("/bptf")
 public class BptfController {
 
-    private static final Logger logger = Logger.getLogger(BptfController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BptfController.class);
 
     private final SteamOpenID openid = new SteamOpenID();
 

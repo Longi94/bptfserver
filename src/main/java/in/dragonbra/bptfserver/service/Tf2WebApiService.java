@@ -3,8 +3,8 @@ package in.dragonbra.bptfserver.service;
 import in.dragonbra.bptfserver.retrofit.Tf2WebApiInterface;
 import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.SchemaItemsBody;
 import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.SchemaOverviewBody;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -21,7 +21,7 @@ public class Tf2WebApiService {
 
     private static final String LANGUAGE = "en";
 
-    private static final Logger logger = LogManager.getLogger(BackpackTfApiService.class);
+    private static final Logger logger = LoggerFactory.getLogger(BackpackTfApiService.class);
 
     private final Tf2WebApiInterface tf2WebApiInterface;
 

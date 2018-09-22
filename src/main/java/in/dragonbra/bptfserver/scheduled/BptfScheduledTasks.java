@@ -6,8 +6,8 @@ import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.SchemaOvervie
 import in.dragonbra.bptfserver.service.BackpackTfApiService;
 import in.dragonbra.bptfserver.service.BptfService;
 import in.dragonbra.bptfserver.service.Tf2WebApiService;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -23,7 +23,7 @@ import java.io.IOException;
 @ConditionalOnProperty("cron.bptf.enabled")
 public class BptfScheduledTasks {
 
-    private static final Logger logger = LogManager.getLogger(BptfScheduledTasks.class);
+    private static final Logger logger = LoggerFactory.getLogger(BptfScheduledTasks.class);
 
     private final BackpackTfApiService backpackTfApiService;
 

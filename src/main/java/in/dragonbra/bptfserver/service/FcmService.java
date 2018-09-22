@@ -3,7 +3,8 @@ package in.dragonbra.bptfserver.service;
 import in.dragonbra.bptfserver.retrofit.FcmInterface;
 import in.dragonbra.bptfserver.retrofit.body.fcm.FcmBody;
 import in.dragonbra.bptfserver.retrofit.response.fcm.FcmResponse;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import retrofit2.Call;
@@ -18,7 +19,7 @@ import java.io.IOException;
 @Service
 public class FcmService {
 
-    private static final Logger logger = Logger.getLogger(FcmService.class);
+    private static final Logger logger = LoggerFactory.getLogger(FcmService.class);
 
     private final FcmInterface fcmInterface;
 

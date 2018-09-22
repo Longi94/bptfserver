@@ -1,6 +1,5 @@
 package in.dragonbra.bptfserver.openid;
 
-import org.apache.log4j.Logger;
 import org.openid4java.association.AssociationException;
 import org.openid4java.consumer.ConsumerException;
 import org.openid4java.consumer.ConsumerManager;
@@ -11,6 +10,8 @@ import org.openid4java.discovery.Identifier;
 import org.openid4java.message.AuthRequest;
 import org.openid4java.message.MessageException;
 import org.openid4java.message.ParameterList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -39,7 +40,7 @@ import java.util.regex.Pattern;
  */
 public class SteamOpenID {
 
-    private static final Logger logger = Logger.getLogger(SteamOpenID.class);
+    private static final Logger logger = LoggerFactory.getLogger(SteamOpenID.class);
 
     private static final String STEAM_OPENID = "http://steamcommunity.com/openid";
 
@@ -59,7 +60,7 @@ public class SteamOpenID {
         try {
             discovered = manager.associate(manager.discover(STEAM_OPENID));
         } catch (DiscoveryException e) {
-            logger.error(e);
+            logger.error(null, e);
             discovered = null;
         }
     }
@@ -82,7 +83,7 @@ public class SteamOpenID {
             AuthRequest authReq = manager.authenticate(this.discovered, callbackUrl);
             return authReq.getDestinationUrl(true);
         } catch (MessageException | ConsumerException e) {
-            logger.error(e);
+            logger.error(null, e);
         }
         return null;
     }
@@ -112,7 +113,7 @@ public class SteamOpenID {
                 }
             }
         } catch (MessageException | DiscoveryException | AssociationException e) {
-            logger.error(e);
+            logger.error(null, e);
         }
         return null;
     }

@@ -11,8 +11,8 @@ import in.dragonbra.bptfserver.retrofit.response.backpacktf.getprices.GetPricesP
 import in.dragonbra.bptfserver.retrofit.response.backpacktf.getprices.GetPricesResponse;
 import in.dragonbra.bptfserver.retrofit.response.fcm.FcmResponse;
 import in.dragonbra.bptfserver.retrofit.response.tf2web.itemschema.*;
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +29,7 @@ import java.util.Map;
 @Service
 public class BptfService {
 
-    private static final Logger logger = LogManager.getLogger(BptfService.class);
+    private static final Logger logger = LoggerFactory.getLogger(BptfService.class);
 
     private final ItemPriceRepository itemPriceRepository;
 

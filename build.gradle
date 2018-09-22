@@ -1,6 +1,6 @@
 buildscript {
 	ext {
-		springBootVersion = '1.5.9.RELEASE'
+		springBootVersion = '2.0.5.RELEASE'
 	}
 	repositories {
 		mavenCentral()
@@ -13,6 +13,7 @@ buildscript {
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
 group = 'in.dragonbra'
 version = '1.0.0-SNAPSHOT2'
@@ -24,23 +25,22 @@ repositories {
 
 
 dependencies {
-	compile 'com.google.code.gson:gson:2.8.1'
-	compile 'com.squareup.okhttp3:okhttp:3.8.1'
-	compile 'com.squareup.okio:okio:1.13.0'
-	compile 'com.squareup.retrofit2:retrofit:2.3.0'
-	compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-	compile 'commons-io:commons-io:2.5'
-	compile 'org.apache.commons:commons-lang3:3.6'
+	compile 'com.google.code.gson:gson:2.8.5'
+	compile 'com.squareup.okhttp3:okhttp:3.11.0'
+	compile 'com.squareup.okio:okio:1.15.0'
+	compile 'com.squareup.retrofit2:retrofit:2.4.0'
+	compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+	compile 'commons-io:commons-io:2.6'
+	compile 'org.apache.commons:commons-lang3:3.8'
 	compile 'org.openid4java:openid4java:1.0.0'
-	//compile 'org.springframework.boot:spring-boot-starter-security'
 	compile 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	compile 'org.springframework.boot:spring-boot-starter-web'
 	compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-	compile 'org.webjars:webjars-locator'
+	compile 'org.webjars:webjars-locator-core'
 	compile 'org.webjars:bootstrap:3.3.7'
 	compile 'org.webjars:jquery:3.2.1'
 	compile 'org.webjars:jquery-ui:1.12.1'
 	compile 'mysql:mysql-connector-java'
 	testCompile 'org.springframework.boot:spring-boot-starter-test'
-	//testCompile 'org.springframework.security:spring-security-test'
+    runtime("org.springframework.boot:spring-boot-properties-migrator")
 }
