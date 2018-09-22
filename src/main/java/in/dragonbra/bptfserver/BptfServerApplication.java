@@ -36,7 +36,7 @@ public class BptfServerApplication implements CommandLineRunner {
                         bptfScheduledTasks.downloadItemSchema();
                         break;
                     case "getprices":
-                        bptfScheduledTasks.downloadItemSchema();
+                        bptfScheduledTasks.downloadPrices();
                         break;
                 }
             }
