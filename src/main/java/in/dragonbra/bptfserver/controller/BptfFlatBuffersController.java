@@ -27,7 +27,7 @@ import java.util.Map;
  * @since 2018-01-19
  */
 @Controller
-@RequestMapping("/fbs")
+@RequestMapping("/bptf/fbs")
 public class BptfFlatBuffersController {
 
     private final ItemPriceRepository itemPriceRepository;
