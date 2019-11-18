@@ -17,6 +17,9 @@ public class SchemaItemsResult {
     @SerializedName("items")
     private List<ItemSchemaItem> items = new ArrayList<>();
 
+    @SerializedName("next")
+    private Integer next;
+
     public int getStatus() {
         return status;
     }
@@ -31,5 +34,13 @@ public class SchemaItemsResult {
 
     public void setItems(List<ItemSchemaItem> items) {
         this.items = items;
+    }
+
+    public Integer getNext() {
+        return next;
+    }
+
+    public void setNext(Integer next) {
+        this.next = next;
     }
 }

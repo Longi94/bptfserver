@@ -40,8 +40,8 @@ public class Tf2WebApiService {
         return response.body();
     }
 
-    public SchemaItemsBody getTf2SchemaItems() throws IOException {
-        Call<SchemaItemsBody> call = tf2WebApiInterface.getTf2SchemaItems(LANGUAGE);
+    public SchemaItemsBody getTf2SchemaItems(int start) throws IOException {
+        Call<SchemaItemsBody> call = tf2WebApiInterface.getTf2SchemaItems(start, LANGUAGE);
 
         Response<SchemaItemsBody> response = call.execute();
 

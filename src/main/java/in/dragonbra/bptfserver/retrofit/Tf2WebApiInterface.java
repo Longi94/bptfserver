@@ -18,5 +18,8 @@ public interface Tf2WebApiInterface {
     Call<SchemaOverviewBody> getTf2SchemaOverview(@Query("language") String language);
 
     @GET("IEconItems_440/GetSchemaItems/v0001/")
-    Call<SchemaItemsBody> getTf2SchemaItems(@Query("language") String language);
+    Call<SchemaItemsBody> getTf2SchemaItems(
+            @Query("start") Integer start,
+            @Query("language") String language
+    );
 }

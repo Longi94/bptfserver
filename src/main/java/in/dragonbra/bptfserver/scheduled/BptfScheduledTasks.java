@@ -54,8 +54,20 @@ public class BptfScheduledTasks {
         logger.info("Downloading itemschema...");
 
         SchemaOverviewBody overviewBody = tf2WebApiService.getTf2SchemaOverview();
-        SchemaItemsBody itemsBody = tf2WebApiService.getTf2SchemaItems();
 
-        bptfService.processItemSchemaBody(overviewBody, itemsBody);
+        bptfService.processSchemaOverviewBody(overviewBody);
+
+        Integer next = 0;
+
+        while (next != null) {
+            SchemaItemsBody itemsBody = tf2WebApiService.getTf2SchemaItems(next);
+            bptfService.processItemSchemaBody(itemsBody);
+
+            if (itemsBody == null || itemsBody.getResult() == null) {
+                next = null;
+            } else {
+                next = itemsBody.getResult().getNext();
+            }
+        }
     }
 }

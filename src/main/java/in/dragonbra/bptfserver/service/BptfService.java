@@ -155,25 +155,14 @@ public class BptfService {
     }
 
     @Transactional
-    public void processItemSchemaBody(SchemaOverviewBody body, SchemaItemsBody itemsBody) {
-
-        if (body == null) {
-            // TODO: 7/23/2017
-            throw new IllegalArgumentException("body is null");
-        }
+    public void processItemSchemaBody(SchemaItemsBody itemsBody) {
 
         if (itemsBody == null) {
             // TODO: 7/23/2017
             throw new IllegalArgumentException("itemsBody is null");
         }
 
-        SchemaOverviewResult result = body.getResult();
         SchemaItemsResult itemResult = itemsBody.getResult();
-
-        if (result == null) {
-            // TODO: 7/23/2017
-            throw new IllegalArgumentException("result is null");
-        }
 
         int count = 0;
 
@@ -194,8 +183,24 @@ public class BptfService {
         }
 
         logger.info("processed " + count + " items");
+    }
 
-        count = 0;
+    @Transactional
+    public void processSchemaOverviewBody(SchemaOverviewBody body) {
+
+        if (body == null) {
+            // TODO: 7/23/2017
+            throw new IllegalArgumentException("body is null");
+        }
+
+        SchemaOverviewResult result = body.getResult();
+
+        if (result == null) {
+            // TODO: 7/23/2017
+            throw new IllegalArgumentException("result is null");
+        }
+
+        int count = 0;
 
         for (ItemSchemaOriginName originName : result.getOriginNames()) {
             OriginName originNameEntity = new OriginName();
