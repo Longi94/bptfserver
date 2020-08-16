@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javax.persistence.*;
+import java.math.BigInteger;
 
 /**
  * @author lngtr
@@ -19,7 +20,7 @@ public class ItemPrice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @JsonIgnore
-    private Long id;
+    private BigInteger id;
 
     @Column(name = "DEFINDEX", nullable = false)
     @JsonProperty("defindex")
@@ -73,11 +74,11 @@ public class ItemPrice {
     @JsonProperty("weapon_wear")
     private Integer weaponWear;
 
-    public Long getId() {
+    public BigInteger getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(BigInteger id) {
         this.id = id;
     }
 

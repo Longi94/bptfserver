@@ -128,6 +128,8 @@ public class BptfService {
                             itemPrice.setAustralium(price.getAustralium() == null ? false : price.getAustralium());
                             itemPrice.setWeaponWear(0);
 
+                            logger.debug(itemPrice.toString());
+
                             itemPriceRepository.save(itemPrice);
 
                             count++;
